@@ -18,12 +18,12 @@ services:
       - 8556
     restart: unless-stopped
     networks:
-      - coolify-proxy
+      - coolify-infra
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.kasm.entrypoints=websecure"
       - "traefik.http.routers.kasm.tls=true"
 
 networks:
-  coolify-proxy:
+  coolify-infra:
     external: true
