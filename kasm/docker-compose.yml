@@ -14,8 +14,7 @@ services:
       - /home/kasm/profiles:/profiles #optional
     ports:
       - 8331:3000
-    expose:
-      - 8556
+      - 8556:8556
     restart: unless-stopped
     networks:
       - coolify-infra
