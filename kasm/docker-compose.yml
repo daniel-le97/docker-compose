@@ -6,6 +6,9 @@ services:
     privileged: true
     environment:
       - KASM_PORT=8556
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
     volumes:
       - /home/kasm/datav1:/opt
       - /home/kasm/profiles:/profiles #optional
