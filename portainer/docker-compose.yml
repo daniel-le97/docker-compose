@@ -10,6 +10,11 @@ services:
       - portainer_data:/data
     ports:
       - "9443:9443"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.portainer.entrypoints=websecure"
+      - "traefik.http.routers.portainer.tls=true"  # Enable TLS for forwarding to Portainer
+      - "traefik.http.services.portainer.loadbalancer.server.port=9443" 
 
 volumes:
   portainer_data:
