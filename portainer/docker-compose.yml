@@ -13,7 +13,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.clgvjga5e001pn6ag33bc1oot-9443.rule=Host(`portainer.devopportunities.dev`)" # Replace with your domain name
-      - 'traefik.http.routers.clgvjga5e001pn6ag33bc1oot-9443.entrypoints=websecure'
+      - 'traefik.http.routers.clgvjga5e001pn6ag33bc1oot-9443.entrypoints=web'
       - 'traefik.http.routers.clgvjga5e001pn6ag33bc1oot-9443.tls=true'
       - "traefik.http.services.clgvjga5e001pn6ag33bc1oot-9443.loadbalancer.server.port=9443"
       - "traefik.docker.network=coolify-proxy" # Replace with your Traefik network name
