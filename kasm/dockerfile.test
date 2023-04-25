@@ -1,0 +1,22 @@
+# Dockerfile for Kasm container
+
+# Use the base image
+FROM lscr.io/linuxserver/kasm:latest
+
+# Set environment variables
+ENV KASM_PORT=443
+ENV DOCKER_HUB_USERNAME=USER
+ENV DOCKER_HUB_PASSWORD=PASS
+
+# Expose ports
+EXPOSE 3000
+EXPOSE 443
+
+# Mount volumes
+VOLUME /path/to/data:/opt
+VOLUME /path/to/profiles:/profiles
+VOLUME /dev/input:/dev/input
+VOLUME /run/udev/data:/run/udev/data
+
+# Start the container with privileged mode and restart unless stopped
+CMD ["--privileged", "-e", "KASM_PORT=$KASM_PORT", "-e", "DOCKER_HUB_USERNAME=$DOCKER_HUB_USERNAME", "-e", "DOCKER_HUB_PASSWORD=$DOCKER_HUB_PASSWORD", "-p", "3000:3000", "-p", "443:443", "-v", "/path/to/data:/opt", "-v", "/path/to/profiles:/profiles", "-v", "/dev/input:/dev/input", "-v", "/run/udev/data:/run/udev/data", "--restart", "unless-stopped"]
