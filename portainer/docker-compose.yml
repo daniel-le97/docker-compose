@@ -12,9 +12,15 @@ services:
       - "9443:9443"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.portainer.entrypoints=websecure"
-      - "traefik.http.routers.portainer.tls=true"  # Enable TLS for forwarding to Portainer
-      - "traefik.http.services.portainer.loadbalancer.server.port=9443" 
+      - "traefik.http.routers.clgvjga5e001pn6ag33bc1oot-portainer.rule=Host(`portainer.devopportunities.dev`)" # Replace with your domain name
+      - 'traefik.http.routers.clgvjga5e001pn6ag33bc1oot-portainer.entrypoints=websecure'
+      - "traefik.http.services.clgvjga5e001pn6ag33bc1oot-portainer.loadbalancer.server.port=9443"
+      - "traefik.docker.network=coolify-proxy" # Replace with your Traefik network name
 
 volumes:
   portainer_data:
+
+networks:
+  coolify-proxy: # Define your external Traefik network
+    external:
+      name: coolify-proxy
