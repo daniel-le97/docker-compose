@@ -1,28 +1,26 @@
-version: "2.1"
 services:
+  # nginx-proxy:
+  #   image: nginxproxy/nginx-proxy
+  #   ports:
+  #     - "80:80"
+  #   volumes:
+  #     - /var/run/docker.sock:/tmp/docker.sock:ro
   kasm:
     image: lscr.io/linuxserver/kasm:latest
     container_name: kasm
     privileged: true
     environment:
-      - KASM_PORT=8556
+      - KASM_PORT=433
       - PUID=1000
       - PGID=1000
       - TZ=America/New_York
+      # - VIRTUAL_HOST=kasm.localhost,setup.localhost
+      # - VIRTUAL_PROTO=https
+      # - VIRTUAL_PORT=8556
     volumes:
-      - /home/kasm/datav1:/opt
-      - /home/kasm/profiles:/profiles #optional
+      - ./data/kasm/opt:/opt
+      - ./data/kasm/profiles:/profiles #optional
     ports:
-      - 8331:3000
-      - 8556:8556
+      - 3000:3000
+      - 443:443
     restart: unless-stopped
-    networks:
-      - coolify-infra
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.kasm.entrypoints=websecure"
-      - "traefik.http.routers.kasm.tls=true"
-
-networks:
-  coolify-infra:
-    external: true
